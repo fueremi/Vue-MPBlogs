@@ -1,11 +1,13 @@
 <template>
-  <div class="blog-wrapper no-user">
+  <div class="blog-wrapper" :class="{ 'no-user': !user }">
     <div class="blog-content">
       <div>
         <h2 v-if="post.welcomeScreen">{{ post.title }}</h2>
         <h2 v-else>{{ post.title }}</h2>
+
         <p v-if="post.welcomeScreen">{{ post.blogPost }}</p>
-        <p class="content-preview" v-else>{{ post.blogHTML }}</p>
+        <p class="content" v-else>{{ post.blogHTML }}</p>
+
         <router-link class="link link-light" v-if="post.welcomeScreen" to="#">
           Login/Register <Arrow class="arrow arrow-light" />
         </router-link>
@@ -33,10 +35,15 @@
 import Arrow from "@/assets/Icons/arrow-right-light.svg";
 
 export default {
-  name: "BlogPost",
+  name: "BlogPost ",
   props: ["post"],
   components: {
     Arrow,
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
   },
 };
 </script>
@@ -47,7 +54,8 @@ export default {
   flex-direction: column;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  @media (min-width: 800px) {
+
+  @media (min-width: 900px) {
     min-height: 650px;
     max-height: 650px;
     flex-direction: row;
@@ -70,6 +78,7 @@ export default {
     div {
       max-width: 375px;
       padding: 72px 24px;
+
       @media (min-width: 700px) {
         padding: 0 24px;
       }
@@ -79,6 +88,7 @@ export default {
         font-weight: 300;
         text-transform: uppercase;
         margin-bottom: 24px;
+
         @media (min-width: 700px) {
           font-size: 40px;
         }
@@ -105,16 +115,16 @@ export default {
         margin-top: 32px;
         padding-bottom: 4px;
         border-bottom: 1px solid transparent;
-        transition: 0.3s ease-in all;
+        transition: 0.5s ease-in all;
 
         &:hover {
           border-bottom-color: #303030;
         }
+      }
 
-        .link-light {
-          &:hover {
-            border-bottom-color: #fff;
-          }
+      .link-light {
+        &:hover {
+          border-bottom-color: #fff;
         }
       }
     }
@@ -129,7 +139,6 @@ export default {
     @media (min-width: 700px) {
       order: 2;
     }
-
     @media (min-width: 800px) {
       flex: 4;
     }
