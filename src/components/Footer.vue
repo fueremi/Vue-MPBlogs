@@ -8,7 +8,7 @@
           >
           <ul>
             <li>
-              <a href="#"><Youtube class="svg-icon"/></a>
+              <a href="#"><YouTube class="svg-icon"/></a>
             </li>
             <li>
               <a href="#"><Twitter class="svg-icon"/></a>
@@ -17,45 +17,50 @@
               <a href="#"><Instagram class="svg-icon"/></a>
             </li>
             <li>
-              <a href="#"><Linkedin class="svg-icon"/></a>
+              <a href="#"><LinkedIn class="svg-icon"/></a>
             </li>
           </ul>
         </div>
         <div class="col-2">
           <ul>
-            <router-link class="link" :to="{ name: 'home' }">Home</router-link>
-            <router-link class="link" :to="{ name: 'blogs' }"
+            <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
+            <router-link class="link" :to="{ name: 'Blogs' }"
               >Blogs</router-link
             >
-            <router-link v-if="user" class="link" :to="{ name: 'newpost' }"
+            <router-link class="link" :to="{ name: 'createPost' }"
               >Create Post</router-link
             >
-            <router-link v-if="!user" class="link" :to="{ name: 'login' }"
-              >Log In / Register</router-link
+            <router-link v-if="!user" class="link" :to="{ name: 'Login' }"
+              >Log In/ Register</router-link
             >
           </ul>
         </div>
       </div>
       <div class="right">
-        <p>Copyright &copy; 2021 All Rights Reserved</p>
+        <p>Copyrigt &copy; 2021 All Rights Reserved</p>
       </div>
     </div>
   </footer>
 </template>
 
 <script>
-import Youtube from "@/assets/Icons/youtube-brands.svg";
+import YouTube from "@/assets/Icons/youtube-brands.svg";
 import Twitter from "@/assets/Icons/twitter-brands.svg";
 import Instagram from "@/assets/Icons/instagram-brands.svg";
-import Linkedin from "@/assets/Icons/linkedin-brands.svg";
+import LinkedIn from "@/assets/Icons/linkedin-brands.svg";
 
 export default {
   name: "Footer",
   components: {
-    Youtube,
+    YouTube,
     Twitter,
     Instagram,
-    Linkedin,
+    LinkedIn,
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
   },
 };
 </script>
@@ -65,18 +70,22 @@ footer {
   margin-top: auto;
   padding: 100px 25px;
   background-color: #303030;
+
   .container {
     display: flex;
     flex-direction: column;
     gap: 32px;
+
     @media (min-width: 800px) {
       flex-direction: row;
       gap: 0px;
     }
+
     > div {
       display: flex;
       flex: 1;
     }
+
     .left {
       gap: 32px;
       color: #fff;
@@ -88,22 +97,24 @@ footer {
         align-items: initial;
         gap: 0;
       }
+
       .header {
-        text-align: center;
         font-size: 24px;
         color: #fff;
-        margin-bottom: 16px;
         text-decoration: none;
         font-weight: 600;
+        text-align: center;
         @media (min-width: 800px) {
           text-align: initial;
         }
       }
+
       ul {
         gap: 16px;
-        list-style: none;
         display: flex;
+        flex: 1;
       }
+
       .col-1,
       .col-2 {
         gap: 32px;
@@ -113,19 +124,24 @@ footer {
           gap: 0;
         }
       }
+
       .col-1 {
         flex-direction: column;
+
         h2 {
           text-align: center;
           @media (min-width: 800px) {
             text-align: initial;
           }
         }
+
         ul {
           margin-top: auto;
+
           li {
             display: flex;
             align-items: center;
+
             .svg-icon {
               width: 24px;
               height: auto;
@@ -134,15 +150,18 @@ footer {
           }
         }
       }
+
       .col-2 {
         ul {
           height: 100%;
           justify-content: center;
           flex-direction: row;
           flex-wrap: wrap;
+
           @media (min-width: 800px) {
             flex-direction: column;
           }
+
           .link {
             font-size: 16px;
             font-weight: 500;
@@ -152,6 +171,7 @@ footer {
         }
       }
     }
+
     .right {
       gap: 32px;
       color: #fff;
@@ -162,6 +182,7 @@ footer {
         gap: 0;
       }
     }
+
     p {
       margin-top: auto;
     }
